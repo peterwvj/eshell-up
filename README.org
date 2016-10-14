@@ -25,7 +25,7 @@ simply executes:
 
 This command searches the current path from right to left for a
 directory that matches the user's input (=fir= in this case). If a
-match is found then eshell changes to that directory, otherwise it
+match is found then =eshell= changes to that directory, otherwise it
 does nothing.
 
 It is recommended to invoke ~go-up~ using an =eshell= alias as done in
