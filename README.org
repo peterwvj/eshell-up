@@ -64,7 +64,7 @@ The test are written using [[https://www.gnu.org/software/emacs/manual/ert.html]
 #+BEGIN_SRC elisp
 load-file test/go-up-tests.el
 ert t
-#+END
+#+END_SRC
 
 ** Credits
 
