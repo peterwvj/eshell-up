@@ -15,7 +15,7 @@ example, assume that the current working directory is:
 /home/user/first/second/third/fourth/fifth $
 #+END_SRC
 
-Now, in order to quicky go to (say) the directory named 'first' one
+Now, in order to quicky go to (say) the directory named =first= one
 simply executes:
 
 #+BEGIN_SRC bash
@@ -24,13 +24,13 @@ simply executes:
 #+END_SRC
 
 This command searches the current path from right to left for a
-directory that matches the user's input ('fir' in this case). If a
+directory that matches the user's input (=fir= in this case). If a
 match is found then eshell changes to that directory, otherwise it
 does nothing.
 
-It is recommended to invoke ~go-up~ using an alias as done in the
-example above. This can (for example) be done by adding the following
-to your .eshell.aliases file:
+It is recommended to invoke ~go-up~ using an =eshell= alias as done in
+the example above. This can be done by adding the following to your
+=.eshell.aliases= file:
 
 #+BEGIN_SRC
 alias up go-up $1
