@@ -3,7 +3,7 @@
 * go-up.el
 
 Emacs package for quickly navigating to a specific parent directory in
-=eshell= without having to repeatedly type =cd ..=.
+=eshell= without having to repeatedly typing =cd ..=.
 
 ** Usage
 
