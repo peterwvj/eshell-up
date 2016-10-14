@@ -8,8 +8,8 @@ Emacs package for quickly navigating to a specific parent directory in
 ** Usage
 
 Navigating to a specific parent directory is achieved using the
-~go-up~ function, which can be bound to an alias such as ~up~. As an
-example, assume that the current working directory is:
+~go-up~ function, which can be bound to an =eshell= alias such as
+~up~. As an example, assume that the current working directory is:
 
 #+BEGIN_SRC bash
 /home/user/first/second/third/fourth/fifth $
