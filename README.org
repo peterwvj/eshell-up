@@ -1,0 +1,56 @@
+#+STARTUP: showall
+
+* go-up.el
+
+** Description 
+
+Emacs package for quickly navigating to a specific parent directory in
+=eshell= without having to repeatedly type =cd ..=.
+
+** Usage
+
+Navigating to a specific parent directory is achieved using the
+~go-up~ function, which can be bound to an alias such as ~up~. As an
+example, assume that the current working directory is:
+
+#+BEGIN_SRC bash
+/home/user/first/second/third/fourth/fifth $
+#+END_SRC
+
+Now, in order to quicky go to (say) the directory named 'first' one
+simply executes:
+
+#+BEGIN_SRC bash
+/home/user/first/second/third/fourth/fifth $ up fir
+/home/user/first $
+#+END_SRC
+
+This command searches the current path from right to left for a
+directory that matches the user's input ('fir' in this case). If a
+match is found then eshell changes to that directory, otherwise it
+does nothing.
+
+It is recommended to invoke ~go-up~ using an alias as done in the
+example above. This can (for example) be done by adding the following
+to your .eshell.aliases file:
+
+#+BEGIN_SRC bash
+alias up go-up $1
+#+END_SRC
+
+** Installation
+
+I'm currently working on making this package available via [[https://github.com/melpa/melpa][MELPA]].
+
+Until that's done, you must install =go-up= by downloading =go-up.el=
+from this repository and adding the following to your =.emacs= file:
+
+#+BEGIN_SRC elisp
+(add-to-list 'load-path "/folder/where/go-up/is/")
+(require 'go-up)
+#+END_SRC
+
+** Credits
+
+This package is inspired by [[https://github.com/vigneshwaranr/bd][bd]], which uses bash to implement similar
+functionality.
