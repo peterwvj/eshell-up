@@ -2,8 +2,6 @@
 
 * go-up.el
 
-** Description 
-
 Emacs package for quickly navigating to a specific parent directory in
 =eshell= without having to repeatedly type =cd ..=.
 
@@ -34,7 +32,7 @@ It is recommended to invoke ~go-up~ using an alias as done in the
 example above. This can (for example) be done by adding the following
 to your .eshell.aliases file:
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC
 alias up go-up $1
 #+END_SRC
 
@@ -42,13 +40,31 @@ alias up go-up $1
 
 I'm currently working on making this package available via [[https://github.com/melpa/melpa][MELPA]].
 
-Until that's done, you must install =go-up= by downloading =go-up.el=
+Until that's done, =go-up= can be installed by downloading =go-up.el=
 from this repository and adding the following to your =.emacs= file:
 
 #+BEGIN_SRC elisp
 (add-to-list 'load-path "/folder/where/go-up/is/")
 (require 'go-up)
 #+END_SRC
+
+** Configuration (optional)
+
+To make searches case sensitive add the following to your =.emacs=
+file:
+
+#+BEGIN_SRC elisp
+(setq go-up-ignore-case nil)
+#+END_SRC
+
+** Testing
+
+The test are written using [[https://www.gnu.org/software/emacs/manual/ert.html][ERT]], and can be executed as follows:
+
+#+BEGIN_SRC elisp
+load-file test/go-up-tests.el
+ert t
+#+END
 
 ** Credits
 
