@@ -26,9 +26,10 @@
 ;;; Commentary:
 
 ;; Package for quickly navigating to a specific parent directory in
-;; eshell without having to repeatedly type 'cd ..'. This is achieved
-;; using the 'go-up' function, which can be bound to an alias such as
-;; 'up'. As an example, assume that the current working directory is:
+;; eshell without having to repeatedly typing 'cd ..'.  This is
+;; achieved using the 'go-up' function, which can be bound to an
+;; eshell alias such as 'up'.  As an example, assume that the current
+;; working directory is:
 ;;
 ;; /home/user/first/second/third/fourth/fifth $
 ;;
@@ -38,14 +39,14 @@
 ;; /home/user/first/second/third/fourth/fifth $ up fir
 ;; /home/user/first $
 ;;
-;; This command searches the current path from right to left for a
-;; directory that matches the user's input ('fir' in this case). If a
-;; match is found then eshell changes to that directory, otherwise it
-;; does nothing.
+;; This command searches the current working directory from right to
+;; left for a directory that matches the user's input ('fir' in this
+;; case).  If a match is found then eshell changes to that directory,
+;; otherwise it does nothing.
 ;;
 ;; It is recommended to invoke 'go-up' using an alias as done in the
-;; example above. This can (for example) be done by adding the
-;; following to your .eshell.aliases file:
+;; example above.  To do that, add the following to your
+;; .eshell.aliases file:
 ;;
 ;; alias up go-up $1
 ;;
@@ -57,12 +58,12 @@
 
 ;; User-definable variables
 
-(defvar go-up-ignore-case t "Non-nil if searches must ignore case")
+(defvar go-up-ignore-case t "Non-nil if searches must ignore case.")
 
 (defun get-sep (os)
-  "Utility function to get file separator, e.g. '/', for an operating system, OS.
-Argument OS a string representation of an operating
-system. e.g. the value of system-type."
+  "Get the file separator, e.g. '/', for an operating system.
+Argument OS a string representation of an operating system, e.g. the
+value of `system-type'."
   (if (or (string= os "windows-nt") (string= os "ms-dos"))
       "\\"
     "/"))
@@ -75,7 +76,7 @@ Argument STR the string to reverse."
           (string-to-list str))))
 
 (defun find-parent-dir (match path sep)
-  "Find parent directory of PATH identified by MATCH.
+  "Find the parent directory based on the user's input.
 Argument MATCH a string that identifies the parent directory to search for.
 Argument PATH the source directory to search from.
 Argument SEP the file separator, e.g. '/'."
@@ -92,7 +93,7 @@ Argument SEP the file separator, e.g. '/'."
         path))))
 
 (defun find-sub-str (i path sep)
-  "Find the parent directory of PATH pointed to by I.
+  "Find the directory of a path pointed to by an index.
 Argument I the PATH index to search from.
 Argument SEP the file separator."
   (if (= i (length path))
@@ -105,8 +106,9 @@ Argument SEP the file separator."
 
 
 (defun go-up (match)
-  "Go to parent directory in eshell. This is the main function of the package.
-Argument MATCH a string that identifies the parent directory to go to."
+  "Go to a specific parent directory in eshell.
+Argument MATCH a string that identifies the parent directory to go
+to."
   (let* ((path default-directory)
          (parent-dir (find-parent-dir match path (get-sep system-type))))
     (eshell/cd parent-dir)))
