@@ -32,7 +32,7 @@
 ;;
 ;; /home/user/first/second/third/fourth/fifth $
 ;;
-;; Now, in order to quicky go to (say) the directory named 'first' one
+;; Now, in order to quickly go to (say) the directory named 'first' one
 ;; simply executes:
 ;;
 ;; /home/user/first/second/third/fourth/fifth $ up fir
