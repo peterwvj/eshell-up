@@ -68,7 +68,8 @@ Argument MATCH a string that identifies the parent directory to search for."
     (locate-dominating-file path
                             (lambda (parent)
                               (let ((dir (file-name-nondirectory
-                                          (directory-file-name parent))))
+                                          (expand-file-name
+                                           (directory-file-name parent)))))
                                 (if (string-match match dir)
                                     dir
                                   nil))))))
