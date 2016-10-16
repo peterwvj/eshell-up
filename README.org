@@ -1,6 +1,6 @@
 #+STARTUP: showall
 
-* go-up.el
+* eshell-up.el
 
 Emacs package for quickly navigating to a specific parent directory in
 =eshell= without having to repeatedly typing =cd ..=.
@@ -8,7 +8,7 @@ Emacs package for quickly navigating to a specific parent directory in
 ** Usage
 
 Navigating to a specific parent directory is achieved using the
-~go-up~ function, which can be bound to an =eshell= alias such as
+~eshell-up~ function, which can be bound to an =eshell= alias such as
 ~up~. As an example, assume that the current working directory is:
 
 #+BEGIN_SRC bash
@@ -28,24 +28,25 @@ directory that matches the user's input (=fir= in this case). If a
 match is found then =eshell= changes to that directory, otherwise it
 does nothing.
 
-It is recommended to invoke ~go-up~ using an =eshell= alias as done in
-the example above. This can be done by adding the following to your
-=.eshell.aliases= file:
+It is recommended to invoke ~eshell-up~ using an =eshell= alias as
+done in the example above. This can be done by adding the following to
+your =.eshell.aliases= file:
 
 #+BEGIN_SRC
-alias up go-up $1
+alias up eshell-up $1
 #+END_SRC
 
 ** Installation
 
 I'm currently working on making this package available via [[https://github.com/melpa/melpa][MELPA]].
 
-Until that's done, =go-up= can be installed by downloading =go-up.el=
-from this repository and adding the following to your =.emacs= file:
+Until that's done, =eshell-up= can be installed by downloading
+=eshell-up.el= from this repository and adding the following to your
+=.emacs= file:
 
 #+BEGIN_SRC elisp
-(add-to-list 'load-path "/folder/where/go-up/is/")
-(require 'go-up)
+(add-to-list 'load-path "/folder/where/eshell-up/is/")
+(require 'eshell-up)
 #+END_SRC
 
 ** Configuration (optional)
@@ -54,7 +55,7 @@ To make searches case sensitive add the following to your =.emacs=
 file:
 
 #+BEGIN_SRC elisp
-(setq go-up-ignore-case nil)
+(setq eshell-up-ignore-case nil)
 #+END_SRC
 
 ** Testing
@@ -62,7 +63,7 @@ file:
 The test are written using [[https://www.gnu.org/software/emacs/manual/ert.html][ERT]], and can be executed as follows:
 
 #+BEGIN_SRC elisp
-load-file test/go-up-tests.el
+load-file test/eshell-up-tests.el
 ert t
 #+END_SRC
 
