@@ -1,5 +1,6 @@
 
 (ert-deftest linux-common-usage-test ()
+  (skip-unless (string= system-type "gnu/linux"))
   (let ((current-path "/home/user/first/second/third/"))
     (should (equal "/home/user/first/" (eshell-up-find-parent-dir "st" current-path)))
     (should (equal "/home/user/first/second/" (eshell-up-find-parent-dir "s" current-path)))
@@ -8,16 +9,17 @@
     (should (equal "/home/" (eshell-up-find-parent-dir "hom" current-path)))))
 
 (ert-deftest windowsx-common-usage-test ()
-  (let ((current-path "C:\\Program Files\\WindowsApps\\first"))
-    (should (equal "C:\\Program Files\\WindowsApps\\first" (eshell-up-find-parent-dir "fi" current-path)))
-    (should (equal "C:\\Program Files\\WindowsApps\\" (eshell-up-find-parent-dir "sA" current-path)))
-    (should (equal "C:\\Program Files\\" (eshell-up-find-parent-dir " " current-path)))
-    (should (equal "C:\\" (eshell-up-find-parent-dir ":" current-path)))))
+  (skip-unless (string= system-type "windows-nt"))
+  (let ((current-path "c:\\Program Files\\WindowsApps\\first"))
+    (should (equal "c:\\Program Files\\WindowsApps\\first" (eshell-up-find-parent-dir "fi" current-path)))
+    (should (equal "c:\\Program Files\\WindowsApps\\" (eshell-up-find-parent-dir "sA" current-path)))
+    (should (equal "c:\\Program Files\\" (eshell-up-find-parent-dir " " current-path)))
+    (should (equal "c:\\" (eshell-up-find-parent-dir ":" current-path)))))
 
  
 (ert-deftest case-test ()
-  (let ((current-path "/path/paTh/pATh/PATH/")
-        (system-type 'windows-nt))
+  (skip-unless (string= system-type "gnu/linux"))
+  (let ((current-path "/path/paTh/pATh/PATH/"))
     (setq eshell-up-ignore-case t)
     (should (equal "/path/paTh/pATh/PATH/" (eshell-up-find-parent-dir "pa" current-path)))
     (setq eshell-up-ignore-case nil)
