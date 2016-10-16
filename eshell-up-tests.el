@@ -10,13 +10,12 @@
 
 (ert-deftest windowsx-common-usage-test ()
   (skip-unless (string= system-type "windows-nt"))
-  (let ((current-path "c:\\Program Files\\WindowsApps\\first"))
-    (should (equal "c:\\Program Files\\WindowsApps\\first" (eshell-up-find-parent-dir "fi" current-path)))
-    (should (equal "c:\\Program Files\\WindowsApps\\" (eshell-up-find-parent-dir "sA" current-path)))
-    (should (equal "c:\\Program Files\\" (eshell-up-find-parent-dir " " current-path)))
-    (should (equal "c:\\" (eshell-up-find-parent-dir ":" current-path)))))
+  (let ((current-path "c:\\Program Files\\WindowsApps\\first\\"))
+    (should (equal "c:/Program Files/WindowsApps/first/" (eshell-up-find-parent-dir "fi" current-path)))
+    (should (equal "c:/Program Files/WindowsApps/" (eshell-up-find-parent-dir "sA" current-path)))
+    (should (equal "c:/Program Files/" (eshell-up-find-parent-dir " " current-path)))))
+;; Windows users use 'cd \\' to go to the dribe
 
- 
 (ert-deftest case-test ()
   (skip-unless (string= system-type "gnu/linux"))
   (let ((current-path "/path/paTh/pATh/PATH/"))
