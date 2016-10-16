@@ -6,14 +6,16 @@
     (should (equal "/home/user/first/second/" (eshell-up-find-parent-dir "s" current-path)))
     (should (equal "/home/user/first/second/third/" (eshell-up-find-parent-dir "h" current-path)))
     (should (equal "/home/user/" (eshell-up-find-parent-dir "ser" current-path)))
-    (should (equal "/home/" (eshell-up-find-parent-dir "hom" current-path)))))
+    (should (equal "/home/" (eshell-up-find-parent-dir "hom" current-path)))
+    (should (equal nil (eshell-up-find-parent-dir "homme" current-path)))))
 
 (ert-deftest windowsx-common-usage-test ()
   (skip-unless (string= system-type "windows-nt"))
   (let ((current-path "c:\\Program Files\\WindowsApps\\first\\"))
     (should (equal "c:/Program Files/WindowsApps/first/" (eshell-up-find-parent-dir "fi" current-path)))
     (should (equal "c:/Program Files/WindowsApps/" (eshell-up-find-parent-dir "sA" current-path)))
-    (should (equal "c:/Program Files/" (eshell-up-find-parent-dir " " current-path)))))
+    (should (equal "c:/Program Files/" (eshell-up-find-parent-dir " " current-path)))
+    (should (equal nil (eshell-up-find-parent-dir "Programm" current-path)))))
 ;; Windows users use 'cd \\' to go to the dribe
 
 (ert-deftest case-test ()
