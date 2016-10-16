@@ -80,7 +80,7 @@ Argument MATCH a string that identifies the parent directory to go
 to."
   (let* ((path default-directory)
          (parent-dir (eshell-up-find-parent-dir match path)))
-    (when (parent-dir)
+    (when parent-dir
       (eshell/cd parent-dir))))
 
 (provide 'eshell-up)
