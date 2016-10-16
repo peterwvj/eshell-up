@@ -1,10 +1,10 @@
-;;; go-up.el --- Quickly go to a specific parent directory in eshell
+;;; eshell-up.el --- Quickly go to a specific parent directory in eshell
 
 ;; Copyright (C) 2016 Peter W. V. Tran-Jørgensen
 
 ;; Author: Peter W. V. Tran-Jørgensen <peter.w.v.jorgensen@gmail.com>
 ;; Maintainer: Peter W. V. Tran-Jørgensen <peter.w.v.jorgensen@gmail.com>
-;; URL: https://github.com/peterwvj/go-up
+;; URL: https://github.com/peterwvj/eshell-up
 ;; Created: 14th October 2016
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "24"))
@@ -27,7 +27,7 @@
 
 ;; Package for quickly navigating to a specific parent directory in
 ;; eshell without having to repeatedly typing 'cd ..'.  This is
-;; achieved using the 'go-up' function, which can be bound to an
+;; achieved using the 'eshell-up' function, which can be bound to an
 ;; eshell alias such as 'up'.  As an example, assume that the current
 ;; working directory is:
 ;;
@@ -44,11 +44,11 @@
 ;; case).  If a match is found then eshell changes to that directory,
 ;; otherwise it does nothing.
 ;;
-;; It is recommended to invoke 'go-up' using an alias as done in the
+;; It is recommended to invoke 'eshell-up' using an alias as done in the
 ;; example above.  To do that, add the following to your
 ;; .eshell.aliases file:
 ;;
-;; alias up go-up $1
+;; alias up eshell-up $1
 ;;
 ;; This package is inspired by 'bd', which uses bash to implement
 ;; similar functionality.
@@ -58,9 +58,9 @@
 
 ;; User-definable variables
 
-(defvar go-up-ignore-case t "Non-nil if searches must ignore case.")
+(defvar eshell-up-ignore-case t "Non-nil if searches must ignore case.")
 
-(defun get-sep (os)
+(defun eshell-up-get-sep (os)
   "Get the file separator, e.g. '/', for an operating system.
 Argument OS a string representation of an operating system, e.g. the
 value of `system-type'."
@@ -68,31 +68,31 @@ value of `system-type'."
       "\\"
     "/"))
 
-(defun str-rev (str)
+(defun eshell-str-rev (str)
   "Utility function to reverse a string.
 Argument STR the string to reverse."
   (apply #'string
          (reverse
           (string-to-list str))))
 
-(defun find-parent-dir (match path sep)
+(defun eshell-up-find-parent-dir (match path sep)
   "Find the parent directory based on the user's input.
 Argument MATCH a string that identifies the parent directory to search for.
 Argument PATH the source directory to search from.
 Argument SEP the file separator, e.g. '/'."
   (if (or (not (stringp match)) (string= "" match))
       path
-    (let* ((path-rev (str-rev path))
-           (match-rev (str-rev match))
-           (case-fold-search go-up-ignore-case)
+    (let* ((path-rev (eshell-str-rev path))
+           (match-rev (eshell-str-rev match))
+           (case-fold-search eshell-up-ignore-case)
            (idx-rev (string-match (regexp-quote match-rev) path-rev)))
       (if (not (null idx-rev))
           (let* ((path-length (length path))
                  (idx (- path-length idx-rev)))
-            (find-sub-str idx path sep))
+            (eshell-up-find-sub-str idx path sep))
         path))))
 
-(defun find-sub-str (i path sep)
+(defun eshell-up-find-sub-str (i path sep)
   "Find the directory of a path pointed to by an index.
 Argument I the PATH index to search from.
 Argument SEP the file separator."
@@ -102,17 +102,17 @@ Argument SEP the file separator."
         ((c (string (aref path i)) ))
       (if (string= c sep)
           (substring path 0 (+ i 1))
-        (find-sub-str (+ i 1) path sep)))))
+        (eshell-up-find-sub-str (+ i 1) path sep)))))
 
 
-(defun go-up (match)
+(defun eshell-up (match)
   "Go to a specific parent directory in eshell.
 Argument MATCH a string that identifies the parent directory to go
 to."
   (let* ((path default-directory)
-         (parent-dir (find-parent-dir match path (get-sep system-type))))
+         (parent-dir (eshell-up-find-parent-dir match path (eshell-up-get-sep system-type))))
     (eshell/cd parent-dir)))
 
-(provide 'go-up)
+(provide 'eshell-up)
 
-;;; go-up.el ends here
+;;; eshell-up.el ends here
