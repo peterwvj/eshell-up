@@ -60,57 +60,26 @@
 
 (defvar eshell-up-ignore-case t "Non-nil if searches must ignore case.")
 
-(defun eshell-up-get-sep (os)
-  "Get the file separator, e.g. '/', for an operating system.
-Argument OS a string representation of an operating system, e.g. the
-value of `system-type'."
-  (if (or (string= os "windows-nt") (string= os "ms-dos"))
-      "\\"
-    "/"))
-
-(defun eshell-str-rev (str)
-  "Utility function to reverse a string.
-Argument STR the string to reverse."
-  (apply #'string
-         (reverse
-          (string-to-list str))))
-
-(defun eshell-up-find-parent-dir (match path sep)
+(defun eshell-up-find-parent-dir (match path)
   "Find the parent directory based on the user's input.
-Argument MATCH a string that identifies the parent directory to search for.
 Argument PATH the source directory to search from.
-Argument SEP the file separator, e.g. '/'."
-  (if (or (not (stringp match)) (string= "" match))
-      path
-    (let* ((path-rev (eshell-str-rev path))
-           (match-rev (eshell-str-rev match))
-           (case-fold-search eshell-up-ignore-case)
-           (idx-rev (string-match (regexp-quote match-rev) path-rev)))
-      (if (not (null idx-rev))
-          (let* ((path-length (length path))
-                 (idx (- path-length idx-rev)))
-            (eshell-up-find-sub-str idx path sep))
-        path))))
-
-(defun eshell-up-find-sub-str (i path sep)
-  "Find the directory of a path pointed to by an index.
-Argument I the PATH index to search from.
-Argument SEP the file separator."
-  (if (= i (length path))
-      path
-    (let
-        ((c (string (aref path i)) ))
-      (if (string= c sep)
-          (substring path 0 (+ i 1))
-        (eshell-up-find-sub-str (+ i 1) path sep)))))
-
+Argument MATCH a string that identifies the parent directory to search for."
+  (let ((case-fold-search eshell-up-ignore-case))
+    (locate-dominating-file path
+                            (lambda (parent)
+                              (let ((dir (file-name-nondirectory
+                                          (directory-file-name
+                                           (file-name-directory parent)))))
+                                (if (string-match match dir)
+                                    dir
+                                  nil))))))
 
 (defun eshell-up (match)
   "Go to a specific parent directory in eshell.
 Argument MATCH a string that identifies the parent directory to go
 to."
   (let* ((path default-directory)
-         (parent-dir (eshell-up-find-parent-dir match path (eshell-up-get-sep system-type))))
+         (parent-dir (eshell-up-find-parent-dir match path)))
     (eshell/cd parent-dir)))
 
 (provide 'eshell-up)
