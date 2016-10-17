@@ -1,4 +1,7 @@
 
+(require 'ert)
+(require 'eshell-up)
+
 (ert-deftest linux-common-usage-test ()
   (skip-unless (string= system-type "gnu/linux"))
   (let ((current-path "/home/user/first/second/third/"))
