@@ -3,8 +3,8 @@
 #+TITLE: eshell-up.el
 
 [[https://melpa.org/#/eshell-up][file:https://melpa.org/packages/eshell-up-badge.svg]]
-
 [[https://travis-ci.org/peterwvj/eshell-up.svg?branch=master]]
+[[http://www.gnu.org/licenses/gpl-3.0.html][http://img.shields.io/:license-gpl3-blue.svg?style=flat-square]]
 
 Emacs package for quickly navigating to a specific parent directory in
 =eshell= without having to repeatedly typing =cd ..=.
