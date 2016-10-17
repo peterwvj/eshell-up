@@ -11,7 +11,12 @@ Emacs package for quickly navigating to a specific parent directory in
 
 Navigating to a specific parent directory is achieved using the
 ~eshell-up~ function, which can be bound to an =eshell= alias such as
-~up~. As an example, assume that the current working directory is:
+~up~.
+
+*** Example
+
+To demonstrate how to use =eshell-up= let's assume that the current
+working directory of =eshell= is:
 
 #+BEGIN_SRC bash
 /home/user/first/second/third/fourth/fifth $
@@ -29,6 +34,8 @@ This command searches the current path from right to left for a
 directory that matches the user's input (=fir= in this case). If a
 match is found then =eshell= changes to that directory, otherwise it
 does nothing.
+
+*** Adding an alias
 
 It is recommended to invoke ~eshell-up~ using an =eshell= alias as
 done in the example above. This can be done by adding the following to
