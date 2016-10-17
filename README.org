@@ -4,6 +4,8 @@
 
 [[https://melpa.org/#/eshell-up][file:https://melpa.org/packages/eshell-up-badge.svg]]
 
+[[https://travis-ci.org/peterwvj/eshell-up.svg?branch=master]]
+
 Emacs package for quickly navigating to a specific parent directory in
 =eshell= without having to repeatedly typing =cd ..=.
 
