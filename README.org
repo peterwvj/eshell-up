@@ -1,6 +1,10 @@
 #+STARTUP: showall
 
-* eshell-up.el
+#+TITLE: eshell-up.el
+
+#+BEGIN_COMMENT
+[[https://melpa.org/#/eshell-up][file:https://melpa.org/packages/eshell-up-badge.svg]]
+#+END_COMMENT
 
 Emacs package for quickly navigating to a specific parent directory in
 =eshell= without having to repeatedly typing =cd ..=.
