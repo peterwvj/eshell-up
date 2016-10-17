@@ -74,7 +74,7 @@ file:
 The test are written using [[https://www.gnu.org/software/emacs/manual/ert.html][ERT]], and can be executed as follows:
 
 #+BEGIN_SRC elisp
-load-file test/eshell-up-tests.el
+load-file eshell-up-tests.el
 ert t
 #+END_SRC
 
