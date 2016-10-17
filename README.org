@@ -40,14 +40,16 @@ alias up eshell-up $1
 
 ** Installation
 
-I'm currently working on making this package available via [[https://github.com/melpa/melpa][MELPA]].
-
-Until that's done, =eshell-up= can be installed by downloading
-=eshell-up.el= from this repository and adding the following to your
-=.emacs= file:
+=eshell-up= is available via [[https://github.com/melpa/melpa][MELPA]]. To add it to Emacs execute the
+following:
 
 #+BEGIN_SRC elisp
-(add-to-list 'load-path "/folder/where/eshell-up/is/")
+package-install RET eshell-up RET
+#+END_SRC
+
+Now, put the following in your =.emacs= file:
+
+#+BEGIN_SRC elisp
 (require 'eshell-up)
 #+END_SRC
 
