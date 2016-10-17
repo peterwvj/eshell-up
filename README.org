@@ -78,6 +78,12 @@ load-file test/eshell-up-tests.el
 ert t
 #+END_SRC
 
+Alternatively, the tests can be run in batch mode:
+
+#+BEGIN_SRC bash
+emacs -Q --batch -L . -l ert -l eshell-up-tests.el -f ert-run-tests-batch-and-exit
+#+END_SRC
+
 ** Credits
 
 This package is inspired by [[https://github.com/vigneshwaranr/bd][bd]], which uses bash to implement similar
