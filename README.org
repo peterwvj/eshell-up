@@ -15,7 +15,7 @@ Navigating to a specific parent directory is achieved using the
 ~eshell-up~ function, which can be bound to an =eshell= alias such as
 ~up~.
 
-*** Example
+*** Examples
 
 To demonstrate how to use =eshell-up= let's assume that the current
 working directory of =eshell= is:
@@ -37,14 +37,29 @@ directory that matches the user's input (=fir= in this case). If a
 match is found then =eshell= changes to that directory, otherwise it
 does nothing.
 
+It is also possible to compute the matching parent directory without
+changing to it. This is achieved using the ~eshell-up-peek~ function,
+which can be bound to an alias such as ~pk~.  When this function is
+used in combination with /subshells/ the matching parent directory can
+be passed as an argument to other functions.  Returning to the
+previous example one can (for example) list the contents of =first= by
+executing:
+
+#+BEGIN_SRC bash
+/home/user/first/second/third/fourth/fifth $ ls {pk fir}
+<directory contents>
+...
+#+END_SRC
+
 *** Adding an alias
 
-It is recommended to invoke ~eshell-up~ using an =eshell= alias as
-done in the example above. This can be done by adding the following to
-your =.eshell.aliases= file:
+It is recommended to invoke ~eshell-up~ and ~eshell-up-peek~ using
+aliases as done in the examples above.  To do that, add the following
+to your =.eshell.aliases= file:
 
 #+BEGIN_SRC
 alias up eshell-up $1
+alias pk eshell-up-peek $1
 #+END_SRC
 
 ** Installation
