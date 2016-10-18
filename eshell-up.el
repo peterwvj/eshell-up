@@ -78,6 +78,7 @@ Argument MATCH a string that identifies the parent directory to search for."
   "Go to a specific parent directory in eshell.
 Argument MATCH a string that identifies the parent directory to go
 to."
+  (interactive)
   (let* ((path default-directory)
          (parent-dir (eshell-up-find-parent-dir match path)))
     (when parent-dir
