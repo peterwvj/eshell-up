@@ -44,11 +44,26 @@
 ;; case).  If a match is found then eshell changes to that directory,
 ;; otherwise it does nothing.
 ;;
-;; It is recommended to invoke 'eshell-up' using an alias as done in the
-;; example above.  To do that, add the following to your
-;; .eshell.aliases file:
+;; Other uses:
+;;
+;; It is also possible to compute the matching parent directory
+;; without changing to it.  This is achieved using the 'eshell-up-peek'
+;; function, which can be bound to an alias such as 'pk'.  When this
+;; function is used in combination with subshells the matching parent
+;; directory can be passed as an argument to other
+;; functions.  Returning to the previous example one can (for example)
+;; list the contents of 'first' by executing:
+;;
+;; /home/user/first/second/third/fourth/fifth $ ls {pk fir}
+;; <directory contents>
+;; ...
+;;
+;; It is recommended to invoke 'eshell-up' or 'eshell-up-peek' using
+;; aliases as done in the examples above.  To do that, add the
+;; following to your .eshell.aliases file:
 ;;
 ;; alias up eshell-up $1
+;; alias pk eshell-up-peek $1
 ;;
 ;; This package is inspired by 'bd', which uses bash to implement
 ;; similar functionality.
@@ -62,8 +77,8 @@
 
 (defun eshell-up-find-parent-dir (match path)
   "Find the parent directory based on the user's input.
-Argument PATH the source directory to search from.
-Argument MATCH a string that identifies the parent directory to search for."
+Argument MATCH a string that identifies the parent directory to search for.
+Argument PATH the source directory to search from."
   (let ((case-fold-search eshell-up-ignore-case))
     (locate-dominating-file path
                             (lambda (parent)
@@ -83,6 +98,16 @@ to."
          (parent-dir (eshell-up-find-parent-dir match path)))
     (when parent-dir
       (eshell/cd parent-dir))))
+
+(defun eshell-up-peek (match)
+  "Find a specific parent directory in eshell.
+Argument MATCH a string that identifies the parent directory to find"
+  (interactive)
+  (let* ((path default-directory)
+         (parent-dir (eshell-up-find-parent-dir match path)))
+    (if parent-dir
+        parent-dir
+      path)))
 
 (provide 'eshell-up)
 
