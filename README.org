@@ -28,14 +28,14 @@ Now, in order to quicky go to (say) the directory named =first= one
 simply executes:
 
 #+BEGIN_SRC bash
-/home/user/first/second/third/fourth/fifth $ up fir
+/home/user/first/second/third/fourth/fifth $ up fi
 /home/user/first $
 #+END_SRC
 
-This command searches the current path from right to left for a
-directory that matches the user's input (=fir= in this case). If a
-match is found then =eshell= changes to that directory, otherwise it
-does nothing.
+This command searches the current path from right to left (while
+skipping the current directory, =fifth=) for a directory that matches
+the user's input (=fi= in this case). If a match is found then
+=eshell= changes to that directory, otherwise it does nothing.
 
 It is also possible to compute the matching parent directory without
 changing to it. This is achieved using the ~eshell-up-peek~ function,
@@ -46,7 +46,7 @@ previous example one can (for example) list the contents of =first= by
 executing:
 
 #+BEGIN_SRC bash
-/home/user/first/second/third/fourth/fifth $ ls {pk fir}
+/home/user/first/second/third/fourth/fifth $ ls {pk fi}
 <directory contents>
 ...
 #+END_SRC

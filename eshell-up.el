@@ -36,13 +36,14 @@
 ;; Now, in order to quickly go to (say) the directory named 'first' one
 ;; simply executes:
 ;;
-;; /home/user/first/second/third/fourth/fifth $ up fir
+;; /home/user/first/second/third/fourth/fifth $ up fi
 ;; /home/user/first $
 ;;
 ;; This command searches the current working directory from right to
-;; left for a directory that matches the user's input ('fir' in this
-;; case).  If a match is found then eshell changes to that directory,
-;; otherwise it does nothing.
+;; left (while skipping the current directory, 'fifth') for a
+;; directory that matches the user's input ('fi' in this case).  If a
+;; match is found then eshell changes to that directory, otherwise it
+;; does nothing.
 ;;
 ;; Other uses:
 ;;
@@ -54,7 +55,7 @@
 ;; functions.  Returning to the previous example one can (for example)
 ;; list the contents of 'first' by executing:
 ;;
-;; /home/user/first/second/third/fourth/fifth $ ls {pk fir}
+;; /home/user/first/second/third/fourth/fifth $ ls {pk fi}
 ;; <directory contents>
 ;; ...
 ;;
