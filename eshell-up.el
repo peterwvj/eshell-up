@@ -75,12 +75,20 @@
 
 (defvar eshell-up-ignore-case t "Non-nil if searches must ignore case.")
 
+(defun eshell-up-closest-parent-dir (file)
+  "Find the closest parent directory of a file.
+Argument FILE the file to find the closest parent directory for."
+  (file-name-directory
+   (directory-file-name
+    (expand-file-name file))))
+
 (defun eshell-up-find-parent-dir (match path)
   "Find the parent directory based on the user's input.
 Argument MATCH a string that identifies the parent directory to search for.
 Argument PATH the source directory to search from."
-  (let ((case-fold-search eshell-up-ignore-case))
-    (locate-dominating-file path
+  (let ((case-fold-search eshell-up-ignore-case)
+        (closest-parent (eshell-up-closest-parent-dir path)))
+    (locate-dominating-file closest-parent
                             (lambda (parent)
                               (let ((dir (file-name-nondirectory
                                           (expand-file-name
