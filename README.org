@@ -52,17 +52,6 @@ executing:
 ...
 #+END_SRC
 
-*** Adding an alias
-
-It is recommended to invoke ~eshell-up~ and ~eshell-up-peek~ using
-aliases as done in the examples above.  To do that, add the following
-to your =.eshell.aliases= file:
-
-#+BEGIN_SRC
-alias up eshell-up $1
-alias pk eshell-up-peek $1
-#+END_SRC
-
 ** Installation
 
 =eshell-up= is available via [[https://github.com/melpa/melpa][MELPA]]. To add it to Emacs execute the
@@ -76,6 +65,15 @@ Now, put the following in your =.emacs= file:
 
 #+BEGIN_SRC elisp
 (require 'eshell-up)
+#+END_SRC
+
+It is recommended to invoke ~eshell-up~ and ~eshell-up-peek~ using
+aliases as done in the examples above.  To do that, add the following
+to your =.eshell.aliases= file:
+
+#+BEGIN_SRC
+alias up eshell-up $1
+alias pk eshell-up-peek $1
 #+END_SRC
 
 ** Configuration (optional)
