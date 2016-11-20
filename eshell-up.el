@@ -76,6 +76,8 @@
 
 (defvar eshell-up-ignore-case t "Non-nil if searches must ignore case.")
 
+(defvar eshell-up-print-parent-dir nil "Non-nil if the parent directory must be printed before eshell-up changes to it")
+
 (defun eshell-up-closest-parent-dir (file)
   "Find the closest parent directory of a file.
 Argument FILE the file to find the closest parent directory for."
@@ -105,8 +107,13 @@ to."
   (interactive)
   (let* ((path default-directory)
          (parent-dir (eshell-up-find-parent-dir match path)))
-    (when parent-dir
-      (eshell/cd parent-dir))))
+    (progn
+      (when parent-dir
+        (eshell/cd parent-dir))
+      (when eshell-up-print-parent-dir
+        (if parent-dir
+            (eshell/echo parent-dir)
+          (eshell/echo path))))))
 
 (defun eshell-up-peek (match)
   "Find a specific parent directory in eshell.
