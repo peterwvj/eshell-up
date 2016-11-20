@@ -78,11 +78,16 @@ alias pk eshell-up-peek $1
 
 ** Configuration (optional)
 
-To make searches case sensitive add the following to your =.emacs=
-file:
+To make =eshell-up= searches case sensitive:
 
 #+BEGIN_SRC elisp
 (setq eshell-up-ignore-case nil)
+#+END_SRC
+
+To print the matching parent directory before changing to it:
+
+#+BEGIN_SRC elisp
+(setq eshell-up-print-parent-dir t)
 #+END_SRC
 
 ** Testing
