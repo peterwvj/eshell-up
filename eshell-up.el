@@ -45,18 +45,18 @@
 ;; match is found then eshell changes to that directory, otherwise it
 ;; does nothing.
 ;;
-;; It is recommended to invoke 'eshell-up' or 'eshell-up-peek' using
-;; aliases as done in the examples above.  To do that, add the
-;; following to your .eshell.aliases file:
+;; It is recommended to invoke 'eshell-up' using an alias as done in
+;; the example above.  To do that, add the following to your
+;; .eshell.aliases file:
 ;;
 ;; alias up eshell-up $1
-;; alias pk eshell-up-peek $1
 ;;
-;; The complete description of eshell-up is available at:
-;; https://github.com/peterwvj/eshell-up
+;; The complete description of eshell-up, including other features, is
+;; available at: https://github.com/peterwvj/eshell-up
 ;;
 ;; This package is inspired by 'bd', which uses bash to implement
 ;; similar functionality.
+;;
 ;; See: https://github.com/vigneshwaranr/bd
 
 ;;; Code:
