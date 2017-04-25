@@ -74,28 +74,30 @@ Argument FILE the file to find the closest parent directory for."
    (directory-file-name
     (expand-file-name file))))
 
-(defun eshell-up-find-parent-dir (match path)
+(defun eshell-up-find-parent-dir (path &optional match)
   "Find the parent directory based on the user's input.
-Argument MATCH a string that identifies the parent directory to search for.
-Argument PATH the source directory to search from."
-  (let ((case-fold-search eshell-up-ignore-case)
-        (closest-parent (eshell-up-closest-parent-dir path)))
-    (locate-dominating-file closest-parent
-                            (lambda (parent)
-                              (let ((dir (file-name-nondirectory
-                                          (expand-file-name
-                                           (directory-file-name parent)))))
-                                (if (string-match match dir)
-                                    dir
-                                  nil))))))
+Argument PATH the source directory to search from.
+Argument MATCH a string that identifies the parent directory to search for."
+  (let ((closest-parent (eshell-up-closest-parent-dir path)))
+    (if match
+        (let ((case-fold-search eshell-up-ignore-case))
+          (locate-dominating-file closest-parent
+                                  (lambda (parent)
+                                    (let ((dir (file-name-nondirectory
+                                                (expand-file-name
+                                                 (directory-file-name parent)))))
+                                      (if (string-match match dir)
+                                          dir
+                                        nil)))))
+      closest-parent)))
 
-(defun eshell-up (match)
+(defun eshell-up (&optional match)
   "Go to a specific parent directory in eshell.
 Argument MATCH a string that identifies the parent directory to go
 to."
   (interactive)
   (let* ((path default-directory)
-         (parent-dir (eshell-up-find-parent-dir match path)))
+         (parent-dir (eshell-up-find-parent-dir path match)))
     (progn
       (when parent-dir
         (eshell/cd parent-dir))
@@ -104,12 +106,12 @@ to."
             (eshell/echo parent-dir)
           (eshell/echo path))))))
 
-(defun eshell-up-peek (match)
+(defun eshell-up-peek (&optional match)
   "Find a specific parent directory in eshell.
 Argument MATCH a string that identifies the parent directory to find"
   (interactive)
   (let* ((path default-directory)
-         (parent-dir (eshell-up-find-parent-dir match path)))
+         (parent-dir (eshell-up-find-parent-dir path match)))
     (if parent-dir
         parent-dir
       path)))
