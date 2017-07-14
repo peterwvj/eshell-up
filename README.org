@@ -38,7 +38,7 @@ skipping the current directory, ~fifth~) for a directory that matches
 the user's input (~fi~ in this case). If a match is found then
 ~eshell~ changes to that directory, otherwise it does nothing. If, on
 the other hand, no argument is passed to ~eshell-up~, this command
-simply changes to the nearest parent directory (like ~cd..~ does).
+simply changes to the nearest parent directory (like ~cd ..~ does).
 
 It is also possible to compute the matching parent directory without
 changing to it. This is achieved using the ~eshell-up-peek~ function,
