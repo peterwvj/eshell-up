@@ -1,4 +1,4 @@
-;;; eshell-up.el --- Quickly go to a specific parent directory in eshell
+;;; eshell-up.el --- Quickly go to a specific parent directory in eshell -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016 Peter W. V. Tran-Jørgensen
 
